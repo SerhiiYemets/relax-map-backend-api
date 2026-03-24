@@ -1,0 +1,27 @@
+{
+  "name": "project-group-02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ihor-Kotliarevskyi/node-project-group-02.git"
+  },
+  "keywords": [],
+  "author": "Ihor-Kotliarevskyi <jagor0707@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ihor-Kotliarevskyi/node-project-group-02/issues"
+  },
+  "homepage": "https://github.com/Ihor-Kotliarevskyi/node-project-group-02#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "nodemon": "^3.1.14"
+  }
+}
