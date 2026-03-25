@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import { Location } from '../models/location.js';
+import Location from '../models/location.js';
 
 export const connectMongoDB = async () => {
   try {

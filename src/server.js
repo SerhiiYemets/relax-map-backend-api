@@ -2,7 +2,6 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { errors } from 'celebrate';
 
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
@@ -14,37 +13,35 @@ import usersRoutes from './routes/usersRoutes.js';
 import locationsRoutes from './routes/locationsRoutes.js';
 import categoriesRoutes from './routes/categoriesRoutes.js';
 import feedbacksRoutes from './routes/feedbacksRoutes.js';
+import authorsRoutes from './routes/authorsRoutes.js';
 
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 3000;
-const isProduction = process.env.NODE_ENV === 'production';
 
-app.use(logger);
 app.use(express.json());
+app.use(logger);
+
 app.use(
   cors({
-    origin:
-      isProduction && process.env.FRONTEND_DOMAIN
-        ? process.env.FRONTEND_DOMAIN
-        : true,
+    origin: true,
     credentials: true,
   }),
 );
+
 app.use(cookieParser());
 
-app.use(authRoutes);
-app.use(usersRoutes);
-app.use(locationsRoutes);
-app.use(categoriesRoutes);
-app.use(feedbacksRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/locations', locationsRoutes);
+app.use('/api/categories', categoriesRoutes);
+app.use('/api/feedbacks', feedbacksRoutes);
+app.use('/api/authors', authorsRoutes);
 
 app.use(notFoundHandler);
-app.use(errors());
 app.use(errorHandler);
 
 await connectMongoDB();
 
-app.listen(PORT, (error) => {
-  if (error) throw error;
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
