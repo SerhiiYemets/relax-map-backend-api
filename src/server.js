@@ -15,6 +15,10 @@ import categoriesRoutes from './routes/categoriesRoutes.js';
 import feedbacksRoutes from './routes/feedbacksRoutes.js';
 import authorsRoutes from './routes/authorsRoutes.js';
 
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./config/swagger.js";
+import swaggerCustomCss from "./config/swaggerCustomCss.js";
+
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 
@@ -29,6 +33,15 @@ app.use(
 );
 
 app.use(cookieParser());
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, {
+    customCss: swaggerCustomCss,
+    customSiteTitle: "Relax Map API Docs",
+  }),
+);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
