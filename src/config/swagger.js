@@ -10,9 +10,6 @@ const options = {
 },
   servers: [
 {
-  url: "http://localhost:3000",
-},
-{
   url: "https://relax-map-backend-api.onrender.com",
 },
 ],

@@ -83,3 +83,18 @@ export const updateLocation = async (id, data, userId) => {
 
   return location;
 };
+
+export const deleteLocation = async (locationId, userId) => {
+  const location = await Location.findById(locationId);
+
+  if (!location) return null;
+
+  // если у тебя есть авторство
+  if (location.userId && location.userId.toString() !== userId) {
+    throw new Error('Forbidden');
+  }
+
+  await Location.findByIdAndDelete(locationId);
+
+  return location;
+};
