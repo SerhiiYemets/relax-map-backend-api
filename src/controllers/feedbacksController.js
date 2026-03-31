@@ -4,12 +4,11 @@ import {
   createFeedback,
 } from '../services/feedbacksService.js';
 
-//  GET /api/feedbacks
+
 export const getFeedbacksController = async (req, res) => {
   try {
     const { locationId, page, limit } = req.query;
 
-// если есть locationId - фильтр
     if (locationId) {
       const result = await getFeedbacksByLocation(locationId, {
         page,
@@ -18,7 +17,6 @@ export const getFeedbacksController = async (req, res) => {
       return res.json(result);
     }
 
-// если нет - все отзывы
     const result = await getAllFeedbacks({ page, limit });
 
     res.json(result);
@@ -27,7 +25,6 @@ export const getFeedbacksController = async (req, res) => {
   }
 };
 
-//  POST /api/feedbacks
 export const createFeedbackController = async (req, res) => {
   try {
     const feedback = await createFeedback(req.body, req.user);

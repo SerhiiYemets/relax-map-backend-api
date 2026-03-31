@@ -1,14 +1,14 @@
 import Feedback from '../models/feedback.js';
 import Location from '../models/location.js';
 
-// отзывы по конкретной локации
+
 export const getFeedbacksByLocation = async (
   locationId,
   { page = 1, limit = 10 }
 ) => {
   const skip = (page - 1) * limit;
 
-  // проверяем, что локация существует
+
   const location = await Location.findById(locationId);
   if (!location) {
     throw new Error('Location not found');
@@ -29,7 +29,7 @@ export const getFeedbacksByLocation = async (
   };
 };
 
-//  ВСЕ отзывы
+
 export const getAllFeedbacks = async ({ page = 1, limit = 10 }) => {
   const skip = (page - 1) * limit;
 
@@ -48,7 +48,7 @@ export const getAllFeedbacks = async ({ page = 1, limit = 10 }) => {
   };
 };
 
-//  создание отзыва
+
 export const createFeedback = async (data, user) => {
   const { locationId, rate, description } = data;
 
@@ -65,7 +65,7 @@ export const createFeedback = async (data, user) => {
     userName: user.name,
   });
 
-  // пересчёт рейтинга
+
   const allFeedbacks = await Feedback.find({ locationId });
 
   const avg =

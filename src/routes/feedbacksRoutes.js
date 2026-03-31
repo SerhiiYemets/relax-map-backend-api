@@ -1,8 +1,8 @@
 import express from 'express';
 
 import {
-  createFeedback,
-  getFeedbacks,
+  createFeedbackController,
+  getFeedbacksController,
 } from '../controllers/feedbacksController.js';
 
 import { authenticate } from '../middleware/authenticate.js';
@@ -26,7 +26,7 @@ const router = express.Router();
  *       200:
  *         description: List of feedbacks
  */
-router.get('/', getFeedbacks);
+router.get('/', getFeedbacksController);
 
 /**
  * @swagger
@@ -52,6 +52,6 @@ router.get('/', getFeedbacks);
  *       401:
  *         description: Unauthorized
  */
-router.post('/', authenticate, createFeedback);
+router.post('/', authenticate, createFeedbackController);
 
 export default router;
