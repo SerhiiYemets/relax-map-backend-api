@@ -1,5 +1,3 @@
-🌍 relax-map-backend-api
-
 # 🌍 Relax Map Backend API
 
 REST API for a travel locations platform with authentication, reviews, filtering and pagination.
